@@ -51,6 +51,15 @@ export default function TabLayout() {
           ),
         }}
       />
+       <Tabs.Screen
+        name="about"
+        options={{
+          title: "About",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="circle" color={focused ? "red" : "blue"} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

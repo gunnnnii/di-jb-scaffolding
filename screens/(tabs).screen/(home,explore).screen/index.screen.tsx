@@ -19,7 +19,7 @@ function Card({ width, height = 120, aspectRatio = 4 / 3 }: CardProps) {
   return (
     <View
       style={[
-        {
+        {   
           backgroundColor: "#aaa",
           borderRadius: 10,
         },
@@ -37,10 +37,19 @@ export default function Timeline() {
 
   return (
     <View style={{ gap: 20 }}>
+      <Text>{JSON.stringify(segments)}</Text>
       {isHome ? (
         <View style={{ gap: 10 }}>
           <Text style={{ fontSize: 24 }}>Headline!</Text>
-          <Card width="100%" aspectRatio={16 / 9} />
+          <Link href="about" asChild>
+          <Pressable>
+            {({ hovered, pressed }) => (
+              <View style={{ transform: [{ scale: pressed ? 0.9 : 1 }]}}>
+                <Card width="100%" aspectRatio={16 / 9} />
+              </View>
+            )}
+        </Pressable>
+            </Link>
         </View>
       ) : null}
       <View style={{ gap: 10 }}>
