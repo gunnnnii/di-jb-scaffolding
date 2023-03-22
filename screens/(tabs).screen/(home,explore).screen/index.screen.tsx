@@ -1,5 +1,6 @@
-import { useSegments } from "expo-router";
-import { ScrollView, Text, View, ViewStyle } from "react-native";
+import { Text } from "#/components/Themed";
+import { Link, useSegments } from "expo-router";
+import { Pressable, ScrollView, View, ViewStyle } from "react-native";
 
 type CardProps =
   | {
