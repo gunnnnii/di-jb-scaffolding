@@ -1,2 +1,2 @@
-import MembersList from "#/screens/(tabs).screen/members.screen/index.screen";
+import MembersList from "#/screens/(tabs)/members/members.screen";
 export default MembersList;

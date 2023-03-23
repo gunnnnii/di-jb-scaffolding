@@ -4,15 +4,22 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 
 export default function NotFoundScreen() {
+  const path = usePathname();
   return (
     <>
       <Stack.Screen options={{ title: "Oops!" }} />
       <View style={styles.container}>
+        <Text style={styles.title}>{path}</Text>
         <Text style={styles.title}>This screen doesn't exist.</Text>
 
         <Link href="/" style={styles.link}>
           <Text style={styles.linkText}>Go to home screen!</Text>
         </Link>
+        {__DEV__ ? (
+          <Link href="/_sitemap" style={styles.link}>
+            <Text style={styles.linkText}>Go to the sitemap</Text>
+          </Link>
+        ) : null}
       </View>
     </>
   );

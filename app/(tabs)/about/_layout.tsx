@@ -1,2 +1,2 @@
-import AboutLayout from "#/screens/(tabs).screen/about.screen/about.layout";
+import AboutLayout from "#/screens/(tabs)/about/about.layout";
 export default AboutLayout;

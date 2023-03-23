@@ -1,2 +1,2 @@
-import MembersLayout from "#/screens/(tabs).screen/members.screen/members.layout";
+import MembersLayout from "#/screens/(tabs)/members/members.layout";
 export default MembersLayout;

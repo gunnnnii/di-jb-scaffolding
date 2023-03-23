@@ -1,3 +1,3 @@
-import TabLayout from "#/screens/(tabs).screen/(tabs).layout";
+import TabLayout from "#/screens/(tabs)/(tabs).layout";
 
 export default TabLayout;

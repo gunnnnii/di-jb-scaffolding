@@ -1,65 +1,49 @@
-import { ScrollView, View } from "react-native";
-import { StackRouter } from "@react-navigation/native";
-import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { Pressable } from "react-native";
+import {
+  NativeStackNavigationOptions,
+  NativeStackHeaderProps,
+} from "@react-navigation/native-stack";
 
-import { Navigator, usePathname, Slot } from "expo-router";
+import { usePathname, Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, useThemeColor } from "./Themed";
 
 type StackNavigationOptions = Pick<NativeStackNavigationOptions, "title">;
 
 type StackNavigationScreenProps = {
-  header?: (options: StackNavigationOptions) => React.ReactNode;
+  header?: (options: NativeStackHeaderProps) => React.ReactNode;
   screenOptions?: StackNavigationOptions;
 };
 export default function StackNavigationScreen({
-  header = (options) => <DefaultHeader title={options.title} />,
+  header = (props) => <DefaultHeader {...props} />,
   screenOptions = {},
 }: StackNavigationScreenProps) {
-  const contentBackground = useThemeColor(
-    {
-      dark: "#222",
-    },
-    "background"
-  );
-  const backgroundColor = useThemeColor({}, "background");
-  return (
-    <Navigator router={StackRouter}>
-      <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor }}>
-        {header(screenOptions)}
-        <ScrollView
-          contentInset={{ top: 10, bottom: 10 }}
-          contentOffset={{ y: -10, x: 0 }}
-          style={{
-            paddingHorizontal: 10,
-            flex: 1,
-            backgroundColor: contentBackground,
-          }}
-        >
-          <Slot />
-        </ScrollView>
-      </SafeAreaView>
-    </Navigator>
-  );
+  return <Stack screenOptions={{ ...screenOptions, header }} />;
 }
 
-type DefaultHeaderProps = {
-  title?: string;
-};
-function DefaultHeader({ title }: DefaultHeaderProps) {
-  const { navigation, state, descriptors, router } = Navigator.useContext();
+export function DefaultHeader({
+  navigation,
+  options: { title },
+  back,
+}: NativeStackHeaderProps) {
   const pathname = usePathname();
   const backgroundColor = useThemeColor({}, "background");
+  const canGoBack = back != null;
 
   return (
-    <View
+    <SafeAreaView
+      edges={["top"]}
       style={{
         paddingVertical: 16,
         paddingHorizontal: 10,
         backgroundColor,
       }}
     >
-      <Text style={{ fontSize: 16 }}>{title ?? pathname}</Text>
-    </View>
+      <Pressable onPress={navigation.goBack} disabled={!canGoBack}>
+        <Text style={{ fontSize: 16 }}>
+          {canGoBack ? "<" + back.title + " | " : ""} {title ?? pathname}
+        </Text>
+      </Pressable>
+    </SafeAreaView>
   );
 }

@@ -1,4 +1,3 @@
-import { Stack } from "expo-router";
 import ExploreStack from "./components/exploreStack";
 import HomeStack from "./components/homeStack";
 
