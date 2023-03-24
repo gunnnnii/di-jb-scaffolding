@@ -12,6 +12,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@expo/vector-icons": "^13.0.0",
     "@react-navigation/native": "^6.0.2",
     "babel-plugin-root-import": "^6.6.0",
