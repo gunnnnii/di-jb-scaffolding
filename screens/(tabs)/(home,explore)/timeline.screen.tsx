@@ -1,7 +1,8 @@
+import Pressable from "#/components/PressableLink";
 import Screen from "#/components/Screen";
 import { Text } from "#/components/Themed";
 import { Link, useSegments } from "expo-router";
-import { Pressable, ScrollView, View, ViewStyle } from "react-native";
+import { ScrollView, View, ViewStyle } from "react-native";
 
 type CardProps =
   | {
@@ -42,13 +43,10 @@ export default function Timeline() {
         {isHome ? (
           <View style={{ gap: 10 }}>
             <Text style={{ fontSize: 24 }}>Headline!</Text>
+
             <Link href="article/123" asChild>
               <Pressable>
-                {({ pressed }) => (
-                  <View style={{ transform: [{ scale: pressed ? 0.9 : 1 }] }}>
-                    <Card width="100%" aspectRatio={16 / 9} />
-                  </View>
-                )}
+                <Card width="100%" aspectRatio={16 / 9} />
               </Pressable>
             </Link>
           </View>
@@ -73,11 +71,7 @@ export default function Timeline() {
           <Text style={{ fontSize: 24 }}>Broken link!</Text>
           <Link href="broken" asChild>
             <Pressable>
-              {({ pressed }) => (
-                <View style={{ transform: [{ scale: pressed ? 0.9 : 1 }] }}>
-                  <Card width="100%" aspectRatio={16 / 11} />
-                </View>
-              )}
+              <Card width="100%" aspectRatio={16 / 11} />
             </Pressable>
           </Link>
         </View>
